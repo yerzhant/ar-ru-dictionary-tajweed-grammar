@@ -4,7 +4,6 @@
  */
 package arabicdictionary;
 
-import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -31,7 +30,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        
+
         edtPaneTajwid.setCaretPosition(0);
         edtPaneGrammarPart1.setCaretPosition(0);
         edtPaneGrammarPart2.setCaretPosition(0);
@@ -210,7 +209,7 @@ public class MainFrame extends javax.swing.JFrame {
         setTitle(bundle.getString("arabic_dictionary_and_grammar")); // NOI18N
         setLocationByPlatform(true);
 
-        jLabel1.setDisplayedMnemonic('\u0410');
+        jLabel1.setLabelFor(txtArabic);
         jLabel1.setText(bundle.getString("arabic")); // NOI18N
 
         txtArabic.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -248,6 +247,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(lstFindings);
 
+        jLabel3.setLabelFor(txtRussian);
         jLabel3.setText(bundle.getString("russian")); // NOI18N
 
         jLabel4.setText(bundle.getString("kind")); // NOI18N
@@ -348,7 +348,7 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(txtAddInfo6)
                             .addComponent(txtAddInfo5)
                             .addComponent(txtAddInfo4)))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -450,23 +450,21 @@ public class MainFrame extends javax.swing.JFrame {
     private void txtArabicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtArabicActionPerformed
         searchArabic();
 
-        if (history.contains(txtArabic.getText())) {
-            return;
+        if (!findings.isEmpty() && !history.contains(txtArabic.getText())) {
+            if (history.size() == HISTORY_SIZE) {
+                history.remove(0);
+            }
+
+            history.add(txtArabic.getText());
+
+            String links = "<style>a { text-decoration: none; }</style>";
+
+            for (String h : history) {
+                links += "<a href='http://" + h + "'>" + h + "</a> ";
+            }
+
+            edtPaneHistory.setText(links);
         }
-
-        if (history.size() == HISTORY_SIZE) {
-            history.remove(0);
-        }
-
-        history.add(txtArabic.getText());
-
-        String links = "<style>a { text-decoration: none; }</style>";
-
-        for (String h : history) {
-            links += "<a href='http://" + h + "'>" + h + "</a> ";
-        }
-
-        edtPaneHistory.setText(links);
     }//GEN-LAST:event_txtArabicActionPerformed
 
     private void lstFindingsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstFindingsValueChanged
@@ -481,6 +479,7 @@ public class MainFrame extends javax.swing.JFrame {
             txtAddInfo6.setText(a.addInfo6);
             txtAddInfo7.setText(a.addInfo7);
             txtArticle.setText(a.russian);
+            txtArticle.setCaretPosition(0);
         }
     }//GEN-LAST:event_lstFindingsValueChanged
 
@@ -653,7 +652,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         }
 
-        lstFindings.updateUI();
         txtArabic.selectAll();
 
         if (!findings.isEmpty()) {
@@ -662,6 +660,8 @@ public class MainFrame extends javax.swing.JFrame {
             if (findings.size() > 1) {
                 lstFindings.requestFocusInWindow();
             }
+
+            lstFindings.updateUI();
         }
     }
 }
