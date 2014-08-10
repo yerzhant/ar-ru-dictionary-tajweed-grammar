@@ -4,6 +4,7 @@
  */
 package arabicdictionary;
 
+import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -30,7 +31,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-
+        
         edtPaneTajwid.setCaretPosition(0);
         edtPaneGrammarPart1.setCaretPosition(0);
         edtPaneGrammarPart2.setCaretPosition(0);
@@ -209,11 +210,8 @@ public class MainFrame extends javax.swing.JFrame {
         setTitle(bundle.getString("arabic_dictionary_and_grammar")); // NOI18N
         setLocationByPlatform(true);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jLabel1.setDisplayedMnemonic('\u0410');
         jLabel1.setText(bundle.getString("arabic")); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 19, -1, -1));
 
         txtArabic.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         txtArabic.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
@@ -225,10 +223,8 @@ public class MainFrame extends javax.swing.JFrame {
                 txtArabicActionPerformed(evt);
             }
         });
-        jPanel1.add(txtArabic, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 12, 191, -1));
 
         jLabel2.setText(bundle.getString("matches")); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 93, -1, -1));
 
         txtRussian.setToolTipText("Alt + 2");
         txtRussian.setFocusAccelerator('2');
@@ -237,7 +233,6 @@ public class MainFrame extends javax.swing.JFrame {
                 txtRussianActionPerformed(evt);
             }
         });
-        jPanel1.add(txtRussian, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 49, 191, -1));
 
         lstFindings.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         lstFindings.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -253,62 +248,42 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(lstFindings);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 117, 272, 461));
-
         jLabel3.setText(bundle.getString("russian")); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 54, -1, -1));
 
         jLabel4.setText(bundle.getString("kind")); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 19, -1, -1));
 
         jLabel5.setText(bundle.getString("add_info1")); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 54, -1, -1));
 
         jLabel6.setText(bundle.getString("add_info2")); // NOI18N
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 88, -1, -1));
 
         jLabel7.setText(bundle.getString("add_info3")); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 124, -1, -1));
 
         jLabel8.setText(bundle.getString("add_info4")); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(567, 19, -1, -1));
 
         jLabel9.setText(bundle.getString("add_info5")); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(567, 54, -1, -1));
 
         jLabel10.setText(bundle.getString("add_info6")); // NOI18N
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(567, 88, -1, -1));
 
         jLabel11.setText(bundle.getString("add_info7")); // NOI18N
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(567, 124, -1, -1));
 
         jLabel12.setText(bundle.getString("article")); // NOI18N
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 154, -1, -1));
 
         txtAddInfo1.setEditable(false);
-        jPanel1.add(txtAddInfo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 49, 170, -1));
 
         txtAddInfo5.setEditable(false);
-        jPanel1.add(txtAddInfo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 49, 331, -1));
 
         txtAddInfo2.setEditable(false);
-        jPanel1.add(txtAddInfo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 83, 170, -1));
 
         txtAddInfo3.setEditable(false);
         txtAddInfo3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jPanel1.add(txtAddInfo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 117, 170, -1));
 
         txtKind.setEditable(false);
-        jPanel1.add(txtKind, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 14, 170, -1));
 
         txtAddInfo6.setEditable(false);
-        jPanel1.add(txtAddInfo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 83, 331, -1));
 
         txtAddInfo4.setEditable(false);
-        jPanel1.add(txtAddInfo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 14, 331, -1));
 
         txtAddInfo7.setEditable(false);
-        jPanel1.add(txtAddInfo7, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 119, 331, -1));
 
         txtArticle.setEditable(false);
         txtArticle.setColumns(20);
@@ -317,11 +292,10 @@ public class MainFrame extends javax.swing.JFrame {
         txtArticle.setRows(5);
         jScrollPane3.setViewportView(txtArticle);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 154, 593, 526));
-
         edtPaneHistory.setEditable(false);
         edtPaneHistory.setContentType("text/html"); // NOI18N
         edtPaneHistory.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        edtPaneHistory.setPreferredSize(new java.awt.Dimension(0, 6));
         edtPaneHistory.addHyperlinkListener(new javax.swing.event.HyperlinkListener() {
             public void hyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {
                 edtPaneHistoryHyperlinkUpdate(evt);
@@ -329,7 +303,99 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(edtPaneHistory);
 
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 584, 272, 96));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtRussian, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtArabic, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel12))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtAddInfo3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(txtAddInfo2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAddInfo1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtKind, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAddInfo7)
+                            .addComponent(txtAddInfo6)
+                            .addComponent(txtAddInfo5)
+                            .addComponent(txtAddInfo4)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtArabic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtKind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtAddInfo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtRussian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAddInfo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtAddInfo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtAddInfo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)
+                        .addComponent(txtAddInfo6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtAddInfo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(txtAddInfo7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3)
+                            .addComponent(jLabel12)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
 
         jTabbedPane1.addTab(bundle.getString("search"), jPanel1); // NOI18N
 
