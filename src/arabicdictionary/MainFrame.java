@@ -456,10 +456,14 @@ public class MainFrame extends javax.swing.JFrame {
             history.add(txtArabic.getText());
 
             String links = "<style>a { text-decoration: none; }</style>";
+            
+            links += "<div style='text-align: right;'>";
 
             for (String h : history) {
-                links += "<a href='http://" + h + "'>" + h + "</a> ";
+                links += "<a href='http://" + h + "' dir='rtl'>" + h + "</a> - ";
             }
+            
+            links += "</div>";
 
             edtPaneHistory.setText(links);
         }
@@ -507,7 +511,9 @@ public class MainFrame extends javax.swing.JFrame {
     private void lstFindingsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lstFindingsKeyTyped
         if (!evt.isActionKey()) {
             txtArabic.requestFocusInWindow();
-            txtArabic.setText("" + evt.getKeyChar());
+            if (!evt.isAltDown() && evt.getKeyChar() != '\n') {
+                txtArabic.setText("" + evt.getKeyChar());
+            }
         }
     }//GEN-LAST:event_lstFindingsKeyTyped
     /**
