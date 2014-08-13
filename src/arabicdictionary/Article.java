@@ -24,6 +24,9 @@ public class Article {
     String addInfo7;
     String russian;
     String base;
+    String base3;
+    String base5;
+    String base7;
 
     public Article(Integer id, String arabic, String kind, String addInfo1, String addInfo2, String addInfo3, String addInfo4, String addInfo5, String addInfo6, String addInfo7, String russian) {
         this.id = id;
@@ -39,6 +42,45 @@ public class Article {
         this.russian = russian;
 
         base = arabic.replaceAll(""
+                + (char) 1611 + "|"
+                + (char) 1612 + "|"
+                + (char) 1613 + "|"
+                + (char) 1614 + "|"
+                + (char) 1615 + "|"
+                + (char) 1616 + "|"
+                + (char) 1617 + "|"
+                + (char) 1618 + "|"
+                + (char) 1619 + "|"
+                + (char) 1620 + "|"
+                + (char) 1621 + "|", "").trim();
+
+        base3 = addInfo3.replaceAll(""
+                + (char) 1611 + "|"
+                + (char) 1612 + "|"
+                + (char) 1613 + "|"
+                + (char) 1614 + "|"
+                + (char) 1615 + "|"
+                + (char) 1616 + "|"
+                + (char) 1617 + "|"
+                + (char) 1618 + "|"
+                + (char) 1619 + "|"
+                + (char) 1620 + "|"
+                + (char) 1621 + "|", "").trim();
+
+        base5 = addInfo5.replaceAll(""
+                + (char) 1611 + "|"
+                + (char) 1612 + "|"
+                + (char) 1613 + "|"
+                + (char) 1614 + "|"
+                + (char) 1615 + "|"
+                + (char) 1616 + "|"
+                + (char) 1617 + "|"
+                + (char) 1618 + "|"
+                + (char) 1619 + "|"
+                + (char) 1620 + "|"
+                + (char) 1621 + "|", "").trim();
+
+        base7 = addInfo7.replaceAll(""
                 + (char) 1611 + "|"
                 + (char) 1612 + "|"
                 + (char) 1613 + "|"

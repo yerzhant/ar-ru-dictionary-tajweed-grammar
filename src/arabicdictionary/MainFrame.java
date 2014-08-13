@@ -215,9 +215,9 @@ public class MainFrame extends javax.swing.JFrame {
         txtArabic.setToolTipText("Alt + 1");
         txtArabic.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtArabic.setFocusAccelerator('1');
-        txtArabic.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtArabicActionPerformed(evt);
+        txtArabic.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtArabicKeyTyped(evt);
             }
         });
 
@@ -445,30 +445,6 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtArabicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtArabicActionPerformed
-        searchArabic();
-
-        if (!findings.isEmpty() && !history.contains(txtArabic.getText())) {
-            if (history.size() == HISTORY_SIZE) {
-                history.remove(0);
-            }
-
-            history.add(txtArabic.getText());
-
-            String links = "<style>a { text-decoration: none; }</style>";
-            
-            links += "<div style='text-align: right;'>";
-
-            for (String h : history) {
-                links += "<a href='http://" + h + "' dir='rtl'>" + h + "</a> - ";
-            }
-            
-            links += "</div>";
-
-            edtPaneHistory.setText(links);
-        }
-    }//GEN-LAST:event_txtArabicActionPerformed
-
     private void lstFindingsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstFindingsValueChanged
         if (!evt.getValueIsAdjusting() && !lstFindings.isSelectionEmpty()) {
             Article a = findings.get(lstFindings.getSelectedIndex());
@@ -504,7 +480,7 @@ public class MainFrame extends javax.swing.JFrame {
         if (evt.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
             txtArabic.setText(evt.getURL().getHost());
 
-            searchArabic();
+            searchArabic(true);
         }
     }//GEN-LAST:event_edtPaneHistoryHyperlinkUpdate
 
@@ -516,6 +492,33 @@ public class MainFrame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_lstFindingsKeyTyped
+
+    private void txtArabicKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtArabicKeyTyped
+        if (evt.getKeyChar() == '\n') {
+            searchArabic(!evt.isControlDown());
+
+            if (!findings.isEmpty() && !history.contains(txtArabic.getText())) {
+                if (history.size() == HISTORY_SIZE) {
+                    history.remove(0);
+                }
+
+                history.add(txtArabic.getText());
+
+                String links = "<style>a { text-decoration: none; }</style>";
+
+                links += "<div style='text-align: right;'>";
+
+                for (String h : history) {
+                    links += "<a href='http://" + h + "' dir='rtl'>" + h + "</a> - ";
+                }
+
+                links += "</div>";
+
+                edtPaneHistory.setText(links);
+            }
+        }
+    }//GEN-LAST:event_txtArabicKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -630,7 +633,7 @@ public class MainFrame extends javax.swing.JFrame {
         findings.clear();
     }
 
-    private void searchArabic() {
+    private void searchArabic(boolean strict) {
         prepareForSearch();
 
         if (txtArabic.getText().length() > 0) {
@@ -647,10 +650,12 @@ public class MainFrame extends javax.swing.JFrame {
                     + (char) 1620 + "|"
                     + (char) 1621 + "|", "").trim();
 
-            for (int i = 0; i < articles.size(); i++) {
-                Article a = articles.get(i);
+            for (Article a : articles) {
+//            for (int i = 0; i < articles.size(); i++) {
+//                Article a = articles.get(i);
 //                System.out.println(a.base + "(" + Arrays.toString(a.base.getBytes()) + ") = " + txtWord.getText() + " (" + Arrays.toString(txtWord.getText().getBytes()) + ")");
-                if (arabic.equals(a.base)) {
+                if (strict && (a.base.equals(arabic) || a.base3.equals(arabic) || a.base5.equals(arabic) || a.base7.equals(arabic))
+                        || !strict && (a.base.contains(arabic) || a.base3.contains(arabic) || a.base5.contains(arabic) || a.base7.contains(arabic))) {
                     findings.add(a);
                 }
             }
