@@ -269,11 +269,12 @@ public class MainFrame extends javax.swing.JFrame {
         txtAddInfo1.setEditable(false);
 
         txtAddInfo5.setEditable(false);
+        txtAddInfo5.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
 
         txtAddInfo2.setEditable(false);
 
         txtAddInfo3.setEditable(false);
-        txtAddInfo3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtAddInfo3.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
 
         txtKind.setEditable(false);
 
@@ -282,6 +283,7 @@ public class MainFrame extends javax.swing.JFrame {
         txtAddInfo4.setEditable(false);
 
         txtAddInfo7.setEditable(false);
+        txtAddInfo7.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
 
         txtArticle.setEditable(false);
         txtArticle.setColumns(20);
@@ -292,7 +294,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         edtPaneHistory.setEditable(false);
         edtPaneHistory.setContentType("text/html"); // NOI18N
-        edtPaneHistory.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        edtPaneHistory.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         edtPaneHistory.setPreferredSize(new java.awt.Dimension(0, 6));
         edtPaneHistory.addHyperlinkListener(new javax.swing.event.HyperlinkListener() {
             public void hyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {
@@ -386,12 +388,12 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
                             .addComponent(jLabel12)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane5)))
                 .addContainerGap())
         );
 
@@ -499,17 +501,17 @@ public class MainFrame extends javax.swing.JFrame {
 
             if (!findings.isEmpty() && !history.contains(txtArabic.getText())) {
                 if (history.size() == HISTORY_SIZE) {
-                    history.remove(0);
+                    history.remove(HISTORY_SIZE - 1);
                 }
 
-                history.add(txtArabic.getText());
+                history.add(0, txtArabic.getText());
 
-                String links = "<style>a { text-decoration: none; }</style>";
+                String links = "";//"<style>a { text-decoration: none; }</style>";
 
                 links += "<div style='text-align: right;'>";
 
                 for (String h : history) {
-                    links += "<a href='http://" + h + "' dir='rtl'>" + h + "</a> - ";
+                    links += "<a href='http://" + h + "' dir='rtl'>" + h + "</a> ";
                 }
 
                 links += "</div>";
