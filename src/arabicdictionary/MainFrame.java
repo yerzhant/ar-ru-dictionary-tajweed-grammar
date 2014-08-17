@@ -4,6 +4,7 @@
  */
 package arabicdictionary;
 
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,7 +21,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    private static final int HISTORY_SIZE = 20;
+    private static final int HISTORY_SIZE = 30;
     ArrayList<Article> articles = new ArrayList<>();
     ArrayList<Article> findings = new ArrayList<>();
     ArrayList<String> history = new ArrayList<>();
@@ -290,6 +291,11 @@ public class MainFrame extends javax.swing.JFrame {
         txtArticle.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         txtArticle.setLineWrap(true);
         txtArticle.setRows(5);
+        txtArticle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtArticleKeyTyped(evt);
+            }
+        });
         jScrollPane3.setViewportView(txtArticle);
 
         edtPaneHistory.setEditable(false);
@@ -299,6 +305,11 @@ public class MainFrame extends javax.swing.JFrame {
         edtPaneHistory.addHyperlinkListener(new javax.swing.event.HyperlinkListener() {
             public void hyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {
                 edtPaneHistoryHyperlinkUpdate(evt);
+            }
+        });
+        edtPaneHistory.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                edtPaneHistoryKeyTyped(evt);
             }
         });
         jScrollPane5.setViewportView(edtPaneHistory);
@@ -391,9 +402,9 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(jScrollPane3)
                             .addComponent(jLabel12)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -487,12 +498,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_edtPaneHistoryHyperlinkUpdate
 
     private void lstFindingsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lstFindingsKeyTyped
-        if (!evt.isActionKey()) {
-            txtArabic.requestFocusInWindow();
-            if (!evt.isAltDown() && evt.getKeyChar() != '\n') {
-                txtArabic.setText("" + evt.getKeyChar());
-            }
-        }
+        newSearch(evt);
     }//GEN-LAST:event_lstFindingsKeyTyped
 
     private void txtArabicKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtArabicKeyTyped
@@ -520,6 +526,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_txtArabicKeyTyped
+
+    private void edtPaneHistoryKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtPaneHistoryKeyTyped
+        newSearch(evt);
+    }//GEN-LAST:event_edtPaneHistoryKeyTyped
+
+    private void txtArticleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtArticleKeyTyped
+        newSearch(evt);
+    }//GEN-LAST:event_txtArticleKeyTyped
 
     /**
      * @param args the command line arguments
@@ -672,6 +686,15 @@ public class MainFrame extends javax.swing.JFrame {
 
             if (findings.size() > 1) {
                 lstFindings.requestFocusInWindow();
+            }
+        }
+    }
+
+    private void newSearch(KeyEvent evt) {
+        if (!evt.isActionKey()) {
+            txtArabic.requestFocusInWindow();
+            if (!evt.isAltDown() && evt.getKeyChar() != '\n') {
+                txtArabic.setText("" + evt.getKeyChar());
             }
         }
     }
